@@ -118,9 +118,9 @@ function App() {
       </button>
       {/* Sección Hero */}
       <section className="hero-section">
-        <h1 className="hero-title">Mi Portfolio</h1>
-        <p className="hero-subtitle">Desarrollador Frontend especializado en React</p>
-        <button className="cta-button">Ver Proyectos</button>
+        <h1 className="hero-title">Hola! Soy Ivan</h1>
+        <p className="hero-subtitle">Me encanta construir cositas para la web, construir sueños es lo que quiero en mi vida.</p>
+        <button className="cta-button">Trabajemos juntos</button>
       </section>
 
       {/* Sección Sobre Mí */}
