@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from 'react'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
-import Lenis from 'lenis'
+import Lenis from '@studio-freight/lenis'
 import './App.css'
 
 // Registrar el plugin ScrollTrigger
@@ -175,7 +175,7 @@ function App() {
 
       {/* Footer */}
       <footer className="footer">
-        <p>&copy; 2023 Mi Portfolio. Todos los derechos reservados.</p>
+        <p>&copy; 2025 Mi Portfolio. Todos los derechos reservados.</p>
       </footer>
     </main>
   )
