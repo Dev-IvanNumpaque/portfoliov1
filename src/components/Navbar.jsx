@@ -6,9 +6,15 @@ const Navbar = ({ theme, toggleTheme }) => {
   
   // Efecto para animar el navbar cuando aparece
   useEffect(() => {
+    // Aseguramos que el navbar sea visible antes de animar
+    const navbar = document.querySelector('.navbar');
+    if (navbar) {
+      navbar.style.visibility = 'visible';
+      navbar.style.opacity = '1';
+    }
+    
     gsap.from('.navbar', {
       y: -50,
-      opacity: 0,
       duration: 0.8,
       ease: 'power3.out'
     });

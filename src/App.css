@@ -308,23 +308,25 @@ button {
   top: 0;
   right: 0;
   left: 0;
-  z-index: 1000;
+  z-index: 9999;
   display: flex;
   justify-content: flex-end;
   padding: 20px 40px;
-  background: rgba(255, 255, 255, 0.85);
+  background: rgba(255, 255, 255, 0.95);
   backdrop-filter: blur(12px);
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
   transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-  visibility: visible;
-  opacity: 1;
-}
+  visibility: visible !important;
+  opacity: 1 !important;
+  pointer-events: auto;
+
 
 [data-theme="dark"] .navbar {
-  background: rgba(18, 18, 18, 0.85);
+  background: rgba(18, 18, 18, 0.95);
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
-  visibility: visible;
-  opacity: 1;
+  visibility: visible !important;
+  opacity: 1 !important;
+  pointer-events: auto;
 }
 
 .navbar:hover {
@@ -427,7 +429,7 @@ button {
   opacity: 0;
   overflow: hidden;
   transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-  z-index: 1000;
+  z-index: 9998;
 }
 
 [data-theme="dark"] .mobile-menu {
@@ -487,14 +489,19 @@ button {
   }
   
   .navbar {
-    background: rgba(255, 255, 255, 0.85);
+    background: rgba(255, 255, 255, 0.95);
     padding: 10px 15px;
-    visibility: visible;
-    opacity: 1;
+    visibility: visible !important;
+    opacity: 1 !important;
+    z-index: 9999;
+    pointer-events: auto;
   }
   
   [data-theme="dark"] .navbar {
-    background: rgba(18, 18, 18, 0.85);
+    background: rgba(18, 18, 18, 0.95);
+    visibility: visible !important;
+    opacity: 1 !important;
+    pointer-events: auto;
   }
   
   h1 {
@@ -534,4 +541,5 @@ button {
   .contact-form button {
     width: 100%;
   }
+}
 }
