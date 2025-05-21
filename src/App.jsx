@@ -1,8 +1,9 @@
-import { useState, useEffect, useRef } from 'react'
-import { gsap } from 'gsap'
-import { ScrollTrigger } from 'gsap/ScrollTrigger'
-import Lenis from '@studio-freight/lenis'
-import './App.css'
+import { useState, useEffect, useRef } from 'react';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import Lenis from '@studio-freight/lenis';
+import './App.css';
+import Navbar from './components/Navbar';
 
 // Registrar el plugin ScrollTrigger
 gsap.registerPlugin(ScrollTrigger);
@@ -100,31 +101,17 @@ function App() {
 
   return (
     <main ref={mainRef} className="portfolio-container">
-      {/* Botón de cambio de tema */}
-      <button 
-        className="theme-toggle" 
-        onClick={toggleTheme} 
-        aria-label={theme === 'light' ? 'Cambiar a modo oscuro' : 'Cambiar a modo claro'}
-      >
-        {theme === 'light' ? (
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-            <path d="M12 3a9 9 0 1 0 9 9c0-.46-.04-.92-.1-1.36a5.389 5.389 0 0 1-4.4 2.26 5.403 5.403 0 0 1-3.14-9.8c-.44-.06-.9-.1-1.36-.1z" />
-          </svg>
-        ) : (
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-            <path d="M12 7a5 5 0 1 0 0 10 5 5 0 0 0 0-10zm0 2a3 3 0 1 1 0 6 3 3 0 0 1 0-6zm0-7a1 1 0 0 1 1 1v1a1 1 0 1 1-2 0V3a1 1 0 0 1 1-1zm0 17a1 1 0 0 1-1-1v-1a1 1 0 1 1 2 0v1a1 1 0 0 1-1 1zM5.636 4.222a1 1 0 0 1 0 1.414L4.93 6.344a1 1 0 1 1-1.414-1.414l.707-.707a1 1 0 0 1 1.414 0zm12.728 12.728a1 1 0 0 1 0 1.414l-.707.707a1 1 0 1 1-1.414-1.414l.707-.707a1 1 0 0 1 1.414 0zM3 12a1 1 0 0 1 1-1h1a1 1 0 1 1 0 2H4a1 1 0 0 1-1-1zm17 0a1 1 0 0 1-1 1h-1a1 1 0 1 1 0-2h1a1 1 0 0 1 1 1zM4.222 18.364a1 1 0 0 1 1.414 0l.707.707a1 1 0 1 1-1.414 1.414l-.707-.707a1 1 0 0 1 0-1.414zm15.556-15.556a1 1 0 0 1 0 1.414l-.707.707a1 1 0 1 1-1.414-1.414l.707-.707a1 1 0 0 1 1.414 0z" />
-          </svg>
-        )}
-      </button>
+      {/* Navbar moderno y minimalista */}
+      <Navbar theme={theme} toggleTheme={toggleTheme} />
       {/* Sección Hero */}
-      <section className="hero-section">
+      <section id="home" className="hero-section">
         <h1 className="hero-title">Hola! Soy Ivan</h1>
         <p className="hero-subtitle">Me encanta construir cositas para la web, construir sueños es lo que quiero en mi vida.</p>
         <button className="cta-button">Trabajemos juntos</button>
       </section>
 
       {/* Sección Sobre Mí */}
-      <section className="about-section">
+      <section id="about" className="about-section">
         <h2>Sobre Mí</h2>
         <div className="about-content">
           <div className="about-text">
@@ -144,7 +131,7 @@ function App() {
       </section>
 
       {/* Sección Proyectos */}
-      <section className="projects-section">
+      <section id="projects" className="projects-section">
         <h2>Mis Proyectos</h2>
         <div className="projects-grid">
           <div className="project-card">
@@ -163,7 +150,7 @@ function App() {
       </section>
 
       {/* Sección Contacto */}
-      <section className="contact-section">
+      <section id="contact" className="contact-section">
         <h2>Contacto</h2>
         <form className="contact-form">
           <input type="text" placeholder="Nombre" />
