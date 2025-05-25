@@ -1,7 +1,47 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { gsap } from 'gsap';
 
 const Navbar = ({ theme, toggleTheme }) => {
   const [isOpen, setIsOpen] = useState(false);
+
+  // Efecto para animar el navbar cuando aparece
+  useEffect(() => {
+    gsap.from('.navbar', {
+      y: -50,
+      opacity: 0,
+      duration: 0.8,
+      ease: 'power3.out'
+    });
+    
+    // Animar los enlaces cuando aparecen
+    gsap.from('.nav-link', {
+      opacity: 0,
+      y: -20,
+      stagger: 0.1,
+      duration: 0.5,
+      delay: 0.3,
+      ease: 'power2.out'
+    });
+  }, []);
+  
+  // Efecto para animar el menú móvil cuando se abre/cierra
+  useEffect(() => {
+    if (isOpen) {
+      gsap.to('.mobile-menu', {
+        height: 'auto',
+        opacity: 1,
+        duration: 0.3,
+        ease: 'power2.out'
+      });
+    } else {
+      gsap.to('.mobile-menu', {
+        height: 0,
+        opacity: 0,
+        duration: 0.3,
+        ease: 'power2.in'
+      });
+    }
+  }, [isOpen]);
   
   return (
     <nav className="navbar">
