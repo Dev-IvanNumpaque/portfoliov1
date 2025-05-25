@@ -1,15 +1,37 @@
+/* Variables CSS para el tema
+ * - Colores principales
+ * - Colores de acento
+ * - Colores de fondo
+ * - Colores de texto
+ */
 :root {
+  /* Modo claro */
   --bg-color: #ffffff;
   --text-color: #333333;
   --accent-color: #6d28d9;
-  --accent-color-rgb: 109, 40, 217; /* RGB values for accent color */
+  --accent-color-rgb: 109, 40, 217;
   --secondary-color: #8b5cf6;
   --border-color: #e5e7eb;
   --card-bg: #f9fafb;
   --shadow-color: rgba(0, 0, 0, 0.1);
 }
 
-/* Estilos generales */
+/* Variables para modo oscuro */
+[data-theme='dark'] {
+  --bg-color: #121212;
+  --text-color: #e5e5e5;
+  --accent-color: #9f7aea;
+  --secondary-color: #b794f4;
+  --border-color: #2d2d2d;
+  --card-bg: #1e1e1e;
+  --shadow-color: rgba(255, 255, 255, 0.1);
+}
+}
+
+/* Reseteo de estilos y configuración base
+ * - Elimina márgenes y padding por defecto
+ * - Configura box-sizing para mejor control de dimensiones
+ */
 * {
   margin: 0;
   padding: 0;
@@ -24,6 +46,73 @@ body {
   transition: background-color 0.3s ease, color 0.3s ease;
 }
 
+/* Switch de tema (modo claro/oscuro)
+ * - Posicionado fijo en la esquina inferior izquierda
+ * - z-index alto para estar siempre visible
+ * - Sin fondo ni bordes por defecto
+ */
+.theme-toggle {
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  z-index: 1000;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  opacity: 0.8;
+  transition: opacity 0.3s ease;
+}
+
+.theme-toggle:hover {
+  opacity: 1;
+}
+
+/* Pista del switch
+ * - Contenedor rectangular redondeado
+ * - Cambia de color según el tema
+ * - Transición suave para cambios de color
+ */
+.toggle-track {
+  width: 50px;
+  height: 24px;
+  background-color: var(--border-color);
+  border-radius: 12px;
+  position: relative;
+  transition: all 0.3s ease;
+  box-shadow: inset 0 0 5px var(--shadow-color);
+}
+
+[data-theme='dark'] .toggle-track {
+  background-color: var(--card-bg);
+}
+
+/* Círculo del switch
+ * - Indicador móvil blanco
+ * - Sombra suave para efecto de elevación
+ * - Animación al cambiar de posición
+ */
+.toggle-thumb {
+  width: 20px;
+  height: 20px;
+  background-color: var(--bg-color);
+  border-radius: 50%;
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 5px var(--shadow-color);
+}
+
+[data-theme='dark'] .toggle-thumb {
+  transform: translateX(15px);
+}
+
+/* Contenedor principal del portfolio
+ * - Ancho máximo para mantener legibilidad
+ * - Centrado horizontalmente
+ * - Contiene todas las secciones
+ */
 .portfolio-container {
   width: 100%;
   max-width: 1400px;
@@ -75,7 +164,12 @@ button {
   transition: all 0.3s ease;
 }
 
-/* Sección Hero */
+/* Sección Hero
+ * - Pantalla completa (100vh)
+ * - Centrado vertical con flexbox
+ * - Padding lateral para texto
+ * - Transiciones suaves para cambios de tema
+ */
 .hero-section {
   height: 100vh;
   display: flex;
@@ -120,7 +214,11 @@ button {
   box-shadow: 0 6px 20px rgba(100, 108, 255, 0.4);
 }
 
-/* Sección Sobre Mí */
+/* Sección Sobre Mí
+ * - Grid de dos columnas
+ * - Espaciado entre elementos
+ * - Animaciones al hacer scroll
+ */
 .about-section {
   background-color: var(--card-bg);
   border-radius: 10px;
@@ -261,7 +359,7 @@ button {
   transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-/* Botón de cambio de tema */
+/* Estilos adicionales para el botón de tema */
 .theme-toggle {
   background: transparent;
   border: none;

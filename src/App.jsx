@@ -1,39 +1,53 @@
+// Importaciones necesarias
+// - React hooks para estado y efectos
+// - GSAP para animaciones
+// - Lenis para scroll suave
 import { useState, useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import Lenis from '@studio-freight/lenis';
 import './App.css';
-import Navbar from './components/Navbar';
 
 // Registrar el plugin ScrollTrigger
 gsap.registerPlugin(ScrollTrigger);
 
+// Componente principal de la aplicación
 function App() {
+  // Referencia al contenedor principal para animaciones GSAP
   const mainRef = useRef(null);
+
+  // Estado para gestionar el tema (claro/oscuro)
   const [theme, setTheme] = useState(() => {
     // Recuperar tema guardado en localStorage o usar 'light' por defecto
     return localStorage.getItem('theme') || 'light';
   });
   
-  // Efecto para aplicar el tema al documento
+  // Efecto para aplicar el tema al documento y sincronizar con localStorage
   useEffect(() => {
     // Aplicar el atributo data-theme al documento
-    if (theme === 'dark') {
-      document.documentElement.setAttribute('data-theme', 'dark');
-    } else {
-      document.documentElement.removeAttribute('data-theme');
-    }
+    document.documentElement.setAttribute('data-theme', theme);
     
     // Guardar preferencia en localStorage
     localStorage.setItem('theme', theme);
   }, [theme]);
+
+  // Efecto para cargar el tema inicial desde localStorage
+  useEffect(() => {
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme) {
+      setTheme(savedTheme);
+    }
+  }, []);
   
   // Función para cambiar el tema
   const toggleTheme = () => {
     setTheme(prevTheme => prevTheme === 'light' ? 'dark' : 'light');
   };
   
-  // Inicializar Lenis para scroll suave
+  // Configuración de Lenis para scroll suave
+  // - duration: duración de la animación
+  // - easing: función de suavizado
+  // - orientation: dirección del scroll
   useEffect(() => {
     const lenis = new Lenis({
       duration: 1.2,
@@ -59,7 +73,10 @@ function App() {
     };
   }, []);
 
-  // Configurar animaciones con GSAP
+  // Configuración de animaciones GSAP
+  // - Animaciones de entrada para elementos
+  // - Animaciones al hacer scroll
+  // - Efectos de parallax y fade
   useEffect(() => {
     const ctx = gsap.context(() => {
       // Animación de entrada para el título
@@ -101,8 +118,15 @@ function App() {
 
   return (
     <main ref={mainRef} className="portfolio-container">
-      {/* Navbar moderno y minimalista */}
-      <Navbar theme={theme} toggleTheme={toggleTheme} />
+      <button
+        onClick={toggleTheme}
+        className="theme-toggle"
+        aria-label={theme === 'light' ? 'Cambiar a modo oscuro' : 'Cambiar a modo claro'}
+      >
+        <div className="toggle-track">
+          <div className="toggle-thumb"></div>
+        </div>
+      </button>
       {/* Sección Hero */}
       <section id="home" className="hero-section">
         <h1 className="hero-title">Hola! Soy Ivan</h1>
